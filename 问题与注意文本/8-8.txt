@@ -1,0 +1,78 @@
+﻿今日8月8
+
+<一>
+学到使用调用地图api接口
+在微信平台中，发送地图位置信息，就会自动回复你当前的地址名称。
+
+遇到的问题：
+	书中用的时百度车联网api，可是当用百度api时，申请接口有两种，一种IP限制，一种sk验证。
+	IP限制出问题，我的服务器IP未知，使用DNS解析，用解析出的IP也不行。
+	sk验证太麻烦，也不会。
+	
+解决方法：
+	转用高德地图api，申请web应用的key。
+	然后找到反地址编码说明，会给出一个地址告诉我。
+	
+遇到问题：
+	我只会解析xml格式，可是如何收到xml格式信息呢？
+
+解决方法：
+	在看反地址编码内容说明时，无意间发现了有返回xml的地址例子。
+	只要加个参数output=xml就能返回xml格式信息了。
+	
+	
+<二>
+学习调用聊天机器人api接口
+
+遇到问题：
+	书中调用的是小黄鸡，什么只能使用7天？！
+
+解决问题：
+	使用免费的图灵机器人，现在是免费的！
+	
+遇到问题：
+	书中好像只能读，不能让小黄鸡收到信息。
+	
+解决问题：
+	我用的是图灵，然后看了一下图灵的接口调用规则。
+	加入参数&info="你发的消息"，就可以让图灵收到，于是可以与你一起愉快的聊天了！
+
+<三>
+学习调用翻译api接口
+
+遇到问题：
+	书中调用的是百度翻译api
+	而申请百度api时，需要什么个人网站，ip等
+	
+解决问题：
+	该用有道云api
+	
+遇到问题：
+	有道云api中，要使用签名认证，md5加密
+
+解决问题：
+	//【7】应用的ID
+    $appKey='6a9e9c3e18f195bd';
+    //【7】应用的密钥
+    $secretKey = 'uvBHoyZbWFaTJaaOsTgdmGggqixNGsKh';
+	// 加盐处理
+	$salt = strval(rand(1, 65536));
+	// md5加密处理，并大写，生成签名
+	$tmpArr = array( $appKey, $q, $salt, $secretKey );
+	$sign = implode( $tmpArr );
+	$sign = strtoupper( md5($sign) );
+	// api接口拼接起来
+	$trainUrl = "http://openapi.youdao.com/api?appKey={$appKey}&q={$q}&from=auto&to=auto&salt={$salt}&sign={$sign}";
+	
+	//【7】读取文件
+	$trainStr = file_get_contents($trainUrl);
+	//【7】JSON解析
+	$trainSon = json_decode($trainStr);
+	//【7】提取内容
+	$contentStr = $trainSon->translation[0];
+	
+	return $contentStr;
+
+遇到问题：
+	怎么通过发消息”翻译"就能进行翻译呢？
+	尼玛，返现，程序是一次性的程序，即进行后，退出，下次重头进行，也就是说全局变量不顶用啊！！

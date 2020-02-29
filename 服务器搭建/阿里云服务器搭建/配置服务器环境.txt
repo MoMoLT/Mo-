@@ -1,0 +1,63 @@
+购买一个unbuntu镜像的云服务器后，设置好账号和密码
+
+
+安装winscp软件，而putty软件可以直接打开使用。
+
+打开putty，输入公用地址，然后点击open开始连接，打开黑框后，输入账号密码，即可进入。
+打开winscp输入公用地址，账号和密码，即可连接。
+
+在黑框中，在cd到/home/目录下创建一个文件夹admin
+命令: mkdir admin
+
+在winscp中，把下好的tomcat和jdk文件上传到admin文件夹里。
+
+一、解压，正确位置，正确名字
+1.解压
+接着用tar -zxvf xx.tar.gz把两个包解压
+
+2.jdk操作
+把jdk解压出来的文件用
+mv jdkxxxx /usr/local/
+把解压出的文件移动到/usr/local/目录下
+
+3.tomcat操作
+把tomcat文件解压，改名为tomcat
+命令:mv xxxxx/ tomcat
+
+用rm 删除压缩包
+
+二、配置java环境
+
+export JAVA_HOME=/usr/local/jdk1.8.0_191
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+
+用vim打开配置环境的文件
+vim /etc/profile
+
+写入后，重启服务器，另配置环境起效果
+
+三、tomcat设置
+1.修改tomcat端口配置
+进入tomcat/conf
+用vim servere.xml修改
+找到：
+<Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+把8080改为80
+
+2.启动tomcat
+进入bin目录
+
+./startup.sh启动
+
+3.测试
+用浏览器打开公网，可以看到信息
+
+4.注意
+该网页运行的网页默认是
+tomcat/webapps/ROOT的index.jsp文件
+
+

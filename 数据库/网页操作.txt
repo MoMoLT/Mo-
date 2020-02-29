@@ -1,0 +1,13 @@
+
+
+查询
+
+select 卡上余额, 水费余额, 剩余电量 as 寝室用电余额 from studentsInfo, studentsBalance, dormsInfo
+where studentsInfo.学号 = studentsBalance.学号 and studentsInfo.住址 = dormsInfo.住址 and studentsInfo.学号 = '201655110215' and 姓名 = '刘腾'
+
+插入
+insert into questions(姓名, 联系方式, 问题, 状态) values('小小', '123456789', '还有谁！！！', 0);
+
+行健轩1-6
+弘毅轩1-4
+致诚轩1-4

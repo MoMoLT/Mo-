@@ -1,0 +1,17 @@
+1.查看数据库
+show databases;
+
+2.创建数据库
+create database xxx;
+
+3.进入数据库
+use 数据库名;
+
+4.查看表
+show tables;
+
+5.使用sql文件
+source 绝对路径
+或\. 据对路径
+
+/home/admin/db/

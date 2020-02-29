@@ -1,0 +1,4 @@
+看:https://www.cnblogs.com/seaBiscuit0922/p/5573043.html
+需要修改/etc/php/7.0/cli/php.ini的内容
+extentsion=php_mysql.dll
+extentsion = php_mysqli.dll

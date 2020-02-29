@@ -1,0 +1,36 @@
+﻿微信平台的开发注意几点：
+
+1.微信与服务器的连接
+
+2.OAuth2.0网页授权 http://www.cnblogs.com/txw1958/p/weixin71-oauth20.html
+
+3.access_token的获取与用处
+
+
+遇到的问题：
+
+
+11-13
+- mysql数据库中，中文信息不对。
+
+* 解决方案：
+mysql_query('SET NAMES utf8');
+
+
+
+11-15
+支付接口调用问题
+
+11-16
+今天把代码移植到了阿里云
+发现问题：
+一、插入数据库有中文乱码问题
+解决：
+每次执行前加入：
+mysqli_query($db, "set names utf8");
+
+二、无法获取微信发来的信息
+原来
+$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+现在改为
+$postStr = file_get_contents("php://input");

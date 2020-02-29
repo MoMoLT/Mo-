@@ -1,0 +1,10 @@
+1.更新系统
+apt-get update
+
+2.安装mysql-server
+apt-get install mysql-server
+apt-get install mysql-client
+apt-get install libmysqlclient-dev
+
+登陆：
+mysql -u root -p 密码

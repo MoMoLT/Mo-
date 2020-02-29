@@ -1,0 +1,53 @@
+参考网址：https://blog.csdn.net/baisedeqingting/article/details/81842146
+
+目标: django+apache+mysql
+
+一.更新软件包列表
+切换到root权限 su root
+apt-get update
+
+
+二、解决python2和python3同时存在的pip问题
+1.直接用pip是python2的，python3并没有，那么就用这个命令
+sudo apt install python3-pip		
+这个命令是安装python3的pip
+
+2.使用python3的pip方法: pip3 install ...
+
+三、mysql数据库安装和相关配置
+1.安装mysql
+安装mysql-server sudo apt-get install mysql-server。
+安装mysql-client sudo apt-get install mysql-client。
+2.测试
+mysql -u root -p
+密码:xxx
+进入mysql
+
+3.apt-get install libmysqlclient-dev
+4.pip3 install mysqlclient
+
+
+四、安装django
+pip3 install django
+
+
+五、安装apache2和mod_wsgi
+
+参考网址:https://modwsgi.readthedocs.io/en/develop/user-guides/quick-installation-guide.html
+1.apt-get install apache2
+2.apt-get install apache2-dev
+3. apt-get install libapache2-mod-wsgi-py3
+4.wget https://github.com/GrahamDumpleton/mod_wsgi/archive/4.6.5.tar.gz	下载mod_wsgi
+5.tar xvfz mod_wsgi-X.Y.tar.gz		解压缩源代码
+
+6.查看apxs位置和python3位置
+whereis apxs
+whereis python3
+
+7.配置源代码
+./configure --with-apxs=/usr/bin/apxs  --with-python=/usr/bin/python3
+
+8. 构建源代码
+make
+make install
+

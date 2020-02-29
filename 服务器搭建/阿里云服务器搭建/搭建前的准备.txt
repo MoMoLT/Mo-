@@ -1,0 +1,8 @@
+下载四个软件：
+用于远程主机Linux的：
+jdk: Linux64位、
+tomcat ： 最新版本-1=8  Core:tar.gz
+
+windows软件：
+putty:windows连接远程主机Linux
+winscp:用于传文件
